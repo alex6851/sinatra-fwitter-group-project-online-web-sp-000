@@ -66,12 +66,12 @@ class ApplicationController < Sinatra::Base
   end
 end
 
-get "/logout" do
+get '/logout' do
   if logged_in?
-    @tweets = Tweet.all
-    erb :'users/logout'
+    session.destroy
+    redirect to '/login'
   else
-    redirect "/login"
+    redirect to '/'
   end
 end
 
